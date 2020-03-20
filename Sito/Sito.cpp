@@ -28,22 +28,70 @@ void Sito::Sift() {
         allDigits.push_back(i);
     }
     for(int i=0; i<allDigits.size(); i++){
-
+        int coincidences = 0;
+        for(int d=0;d<4; d++){
+            if(allDigits[i]%denominator[d]==0){
+                continue;
+            } else{
+                coincidences++;
+            }
+        }
+        if(coincidences==4){
+            sortedDigits.push_back(allDigits[i]);
+        }
     }
 }
 
-void Sito::Display() {
-
+void Sito::DisplaySifted() {
+    if(size>7) {
+        for (int denominators: denominator) {
+            cout << denominators << " ";
+        }
+        for (int sortedDigit: sortedDigits) {
+            cout << sortedDigit << " ";
+        }
+    }else{
+        switch(size){
+            case 2:
+                cout<<denominator[0]<<" ";
+                break;
+            case 3:
+                for(int i=0;i<2;i++){
+                    cout<<denominator[i]<<" ";
+                }
+                break;
+            case 4:
+                for(int i=0;i<2;i++){
+                    cout<<denominator[i]<<" ";
+                }
+                break;
+            case 5:
+                for(int i=0;i<3;i++){
+                    cout<<denominator[i]<<" ";
+                }
+                break;
+            case 6:
+                for(int i=0;i<3;i++){
+                    cout<<denominator[i]<<" ";
+                }
+                break;
+            case 7:
+                for(int i=0;i<4;i++){
+                    cout<<denominator[i]<<" ";
+                }
+                break;
+        }
+    }
 }
 
 void Sito::Check(int x) {
-
+// ????????
 }
 
 void Sito::DoActions() {
     fillDenominator();
     Sift();
-    Display();
+    DisplaySifted();
     Check(7);
 }
 
